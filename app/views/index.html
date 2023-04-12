@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.1.1">
+  <title>Dashboard Food</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.css"> -->
+  <!-- Bootstrap core CSS -->
+  <link href="../../assets/lib/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/foodList.css">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
+  <!-- <link href="../../assets/css/foodForm.css" rel="stylesheet"> -->
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">CyberFood</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+      data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+
+
+    <main role="main" class="">
+      <h2>Danh Sách người dùng</h2>
+      <!-- Button trigger modal -->
+      <div class="row">
+        <div class="col-8">
+          <button id="btnAdd" type="button" class="btn btn-warning mb-3 text-white" data-toggle="modal"
+            data-target="#exampleModal">
+            Thêm Người dùng
+          </button>
+        </div>
+        <div class="col-4">
+          <div class="form-group row">
+            <label for="selLoai" class="col-sm-2 col-form-label">Show</label>
+            <div class="col-sm-10">
+              <select class="custom-select" id="allPerson">
+                <option selected>Chọn loại</option>
+                <option value="all">Tất cả</option>
+                <option value="student">Sinh viên</option>
+                <option value="employee">Giảng viên</option>
+                <option value="customer">Khách hàng</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="table-responsive foodTable">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr class="bg-warning text-white">
+              <th>ID</th>
+              <th>Tên Người dùng</th>
+              <th>Địa chỉ</th>
+              <th>Email</th>
+              <th>Khác</th>
+              <th>
+                <i class="fa fa-cog"></i>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tbodyPerson" class="row">
+
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thêm Người dùng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="needs-validation" id="foodForm">
+            <div class="row">
+              <div class="col-md-12 mb-4">
+                <select class="form-control w-50 m-auto " id="userType">
+                  <option value="student">Học Viên</option>
+                  <option value="employee">Giảng Viên</option>
+                  <option value="customer">Khách Hàng</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="personID">Mã Người dùng</label>
+                <input type="text" class="form-control" id="personID" placeholder="Nhập tên người dùng" required>
+                <div id="invalidID" class="invalid-feedback">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="name">Tên người dùng</label>
+                <input type="text" class="form-control" id="name" placeholder="Nhập tên người dùng" required>
+                <div id="invalidName" class="invalid-form">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="address">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" required>
+                <div id="invalidAddress" class="invalid-feedback">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" placeholder="Nhập email" value="" required>
+                <div id="invalidEmail" class="invalid-feedback">
+                </div>
+              </div>
+
+
+            </div>
+            <div id="renderPerson" class="row"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="btnUpPerson">Cập Nhật</button>
+          <button type="button" class="btn btn-warning" id="btnAddPerson">Thêm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Tìm các thẻ input dựa và type -->
+  <style>
+    .modal-body input,
+    .modal-body select,
+    .modal-body textarea {
+      background-color: orange !important;
+    }
+  </style>
+  <script src="../../assets/lib/js/Jquery/jquery-3.5.1.slim.min.js"></script>
+  <script src="../../assets/lib/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+  <script type="module" src="../controllers/index.js"></script>
+</body>
+
+</html>
