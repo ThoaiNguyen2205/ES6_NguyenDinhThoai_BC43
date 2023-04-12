@@ -6,19 +6,17 @@ import { Valadition } from "../models/Validation.js";
 let list = new listPerson();
 let val = new Valadition();
 document.querySelector("#btnAdd").onclick = () => {
+  document.querySelector("#exampleModalLabel").innerHTML = "Thêm  Người Dùng";
   document
     .querySelectorAll("#mainForm input,#mainForm select")
     .forEach((input) => {
       input.disabled = false;
     });
   document.querySelector("#btnAddPerson").style.display = "inline";
-  document.querySelector("#btnUpdate").style.display = "none";
+  document.querySelector("#btnUpPerson").style.display = "none";
   RenderForm();
 };
-// document.querySelector("#btnDong").onclick = () => {
-//   document.querySelector("#mainForm").reset();
-//   document.querySelectorAll(".modal-body .thong_bao").reset();
-// };
+
 document.querySelector("#userType").onchange = () => {
   let change = document.querySelector("#userType").value;
   switch (change) {
@@ -32,23 +30,11 @@ document.querySelector("#userType").onchange = () => {
       RenderForm(change);
   }
 };
-// tạo đối tượng mẫu
-const student1 = new Student(
-  "0001",
-  "Nguyen Phuc A",
-  "HCM",
-  "nguyenphuc@gmail.com",
-  "8",
-  "7",
-  "9.5"
-);
-
-list.addUser(student1);
 
 list.getListUser();
-list.renderTableUser("#tableDanhSach");
-// ----------thêm người dùng--------------
-document.querySelector("#btnThemNV").onclick = () => {
+list.renderTableUser("#tbodyPerson");
+// AddPerson
+document.querySelector("#btnAddPerson").onclick = () => {
   let type = document.querySelector("#userType").value;
   switch (type) {
     case "none": {
@@ -56,7 +42,9 @@ document.querySelector("#btnThemNV").onclick = () => {
     case "student":
       {
         let student = new Student();
-        let arrinput = document.querySelectorAll(".modal-body input");
+        let arrinput = document.querySelectorAll(
+          ".modal-body input,.modal-body select,.modal-body textarea "
+        );
         for (let input of arrinput) {
           let { id, value } = input;
           student[id] = value;
@@ -64,27 +52,32 @@ document.querySelector("#btnThemNV").onclick = () => {
         let valid = true;
 
         valid =
-          val.checkEmty(student.code, "tbErrorCode") &
+          val.checkEmty(student.personID, "tbErrorPersonID") &
           val.checkEmty(student.name, "tbErrorName") &
           val.checkEmty(student.email, "tbErrorEmail") &
           val.checkEmty(student.address, "tbErrorAddress") &
-          val.checkEmty(student.math, "tbErrorMath") &
-          val.checkEmty(student.physics, "tbErrorPhysic") &
-          val.checkEmty(student.chemistry, "tbErrorChemistry");
+          val.checkEmty(student.mathPoint, "tbErrorMath") &
+          val.checkEmty(student.physicsPoint, "tbErrorPhysics") &
+          val.checkEmty(student.chemistryPoint, "tbErrorChemistry");
         valid =
           valid &
-          val.checkLength(student.code, "tbErrorLengthCode", "Mã", 1, 4) &
+          val.checkLength(student.personID, "tbErrorLengthID", "Mã", 1, 4) &
           val.checkLetter(student.name, "tbErrorLetterName") &
-          val.checkemail(student.email, "tbErrorDefineEmail") &
-          val.checkNumber(student.math, "tbErrorNumberMath", 0, 10) &
-          val.checkNumber(student.physics, "tbErrorNumberPhysic", 0, 10) &
-          val.checkNumber(student.chemistry, "tbErrorNumberChemistry", 0, 10);
+          val.checkemail(student.email, "tbErrorDefaultEmail") &
+          val.checkNumber(student.mathPoint, "tbErrorNumberMath", 0, 10) &
+          val.checkNumber(student.physicsPoint, "tbErrorNumberPhysics", 0, 10) &
+          val.checkNumber(
+            student.chemistryPoint,
+            "tbErrorNumberChemistry",
+            0,
+            10
+          );
 
         if (!valid) {
           return;
         }
         list.addUser(student);
-        list.renderTableUser("#tableDanhSach");
+        list.renderTableUser("#tbodyPerson");
         list.saveListUser();
       }
 
@@ -92,89 +85,94 @@ document.querySelector("#btnThemNV").onclick = () => {
     case "employee":
       {
         let employee = new Employee();
-        let arrinput = document.querySelectorAll(".modal-body input");
+        let arrinput = document.querySelectorAll(
+          ".modal-body input,.modal-body select,.modal-body textarea "
+        );
         for (let input of arrinput) {
           let { id, value } = input;
           employee[id] = value;
         }
         let valid = true;
         valid =
-          val.checkEmty(employee.code, "tbErrorCode") &
+          val.checkEmty(employee.personID, "tbErrorPersonID") &
           val.checkEmty(employee.name, "tbErrorName") &
           val.checkEmty(employee.email, "tbErrorEmail") &
           val.checkEmty(employee.address, "tbErrorAddress") &
-          val.checkEmty(employee.salaryPDay, "tbErrorSalaryPDay") &
-          val.checkEmty(employee.workday, "tbErrorWorkday");
+          val.checkEmty(employee.salaryDay, "tbErrorSalaryDay") &
+          val.checkEmty(employee.workingDay, "tbErrorWorkingDay");
         valid =
           valid &
-          val.checkLength(employee.code, "tbErrorLengthCode", "Mã", 1, 4) &
+          val.checkLength(employee.personID, "tbErrorLengthID", "Mã", 1, 4) &
           val.checkLetter(employee.name, "tbErrorLetterName") &
-          val.checkemail(employee.email, "tbErrorDefineEmail") &
-          val.checkNumberE(employee.salaryPDay, "tbErrorNumBerSalaryPDay") &
-          val.checkNumberE(employee.workday, "tbErrorNumberWorkday");
+          val.checkemail(employee.email, "tbErrorDefaultEmail") &
+          val.checkNumberE(employee.salaryDay, "tbErrorNumberSalaryDay") &
+          val.checkNumberE(employee.workingDay, "tbErrorNumberWorkingDay");
 
         if (!valid) {
           return;
         }
         list.addUser(employee);
-        list.renderTableUser("#tableDanhSach");
+        list.renderTableUser("#tbodyPerson");
         list.saveListUser();
       }
       break;
     case "customer": {
       let customer = new Customer();
-      let arrinput = document.querySelectorAll(".modal-body input");
+      let arrinput = document.querySelectorAll(
+        ".modal-body input,.modal-body select,.modal-body textarea "
+      );
       for (let input of arrinput) {
         let { id, value } = input;
         customer[id] = value;
       }
       let valid = true;
       valid =
-        val.checkEmty(customer.code, "tbErrorCode") &
+        val.checkEmty(customer.personID, "tbErrorPersonID") &
         val.checkEmty(customer.name, "tbErrorName") &
         val.checkEmty(customer.email, "tbErrorEmail") &
         val.checkEmty(customer.address, "tbErrorAddress") &
         val.checkEmty(customer.company, "tbErrorCompany") &
         val.checkEmty(customer.billValue, "tbErrorBillValue") &
-        val.checkEmty(customer.review, "tbErrorReview");
+        val.checkEmty(customer.feedback, "tbErrorFeedback");
       valid =
         valid &
-        val.checkLength(customer.code, "tbErrorLengthCode", "Mã", 1, 4) &
+        val.checkLength(customer.personID, "tbErrorLengthID", "Mã", 1, 4) &
         val.checkLetter(customer.name, "tbErrorLetterName") &
-        val.checkemail(customer.email, "tbErrorDefineEmail") &
+        val.checkemail(customer.email, "tbErrorDefaultEmail") &
         val.checkLetter(customer.company, "tbErrorLetterCompany") &
-        val.checkNumberE(customer.billValue, "tbErrorNumberBillvalue");
+        val.checkNumberE(customer.billValue, "tbErrorNumberBillValue");
 
       if (!valid) {
         return;
       }
 
       list.addUser(customer);
-      list.renderTableUser("#tableDanhSach");
+      list.renderTableUser("#tbodyPerson");
       list.saveListUser();
     }
   }
 
-  document.querySelector("#mainForm").reset();
+  document.querySelector("#personForm").reset();
+  document.querySelector("thong_bao").reset();
 };
-// ------------xóa người dùng-------------
-window.deleteUser = (code) => {
-  list.deleteUser(code);
-  list.renderTableUser("#tableDanhSach");
+// DeletePerson
+window.deleteUser = (personID) => {
+  list.deleteUser(personID);
+  list.renderTableUser("#tbodyPerson");
   list.saveListUser();
 };
-// -------------sửa người dùng--------------
-window.editUser = (code) => {
-  let editUser = list.editUser(code);
+// FixPerson
+window.editUser = (personID) => {
+  let editUser = list.editUser(personID);
   switch (editUser.class) {
     case "student":
-      renderModal(editUser.class);
+      RenderForm(editUser.class);
       break;
     case "employee":
-      renderModal(editUser.class);
+      RenderForm(editUser.class);
       break;
     default:
-      renderModal(editUser.class);
+      RenderForm(editUser.class);
   }
   if (editUser) {
     let arrinput = document.querySelectorAll(".modal-body input");
@@ -183,21 +181,22 @@ window.editUser = (code) => {
       input.value = editUser[id];
     }
   }
-  document.querySelector("#header-title").innerHTML = "Chỉnh Sửa  Người Dùng";
+  document.querySelector("#exampleModalLabel").innerHTML =
+    "Chỉnh Sửa  Người Dùng";
   document
     .querySelectorAll("#mainForm input,#mainForm select")
     .forEach((input) => {
       input.disabled = false;
     });
-  document.querySelector("#code").disabled = "true";
+  document.querySelector("#personID").disabled = "true";
   document.querySelector("#userType").disabled = "true";
 
-  document.querySelector("#btnThemNV").style.display = "none";
-  document.querySelector("#btnCapNhat").style.display = "inline";
+  document.querySelector("#btnAddPerson").style.display = "none";
+  document.querySelector("#btnUpPerson").style.display = "inline";
 };
 
-// ------------cập nhật người dùng-------------
-document.querySelector("#btnCapNhat").onclick = () => {
+// UpdatePerson
+document.querySelector("#btnUpPerson").onclick = () => {
   let type = document.querySelector("#userType").value;
   switch (type) {
     case "student":
@@ -214,17 +213,22 @@ document.querySelector("#btnCapNhat").onclick = () => {
           val.checkEmty(newStudent.name, "tbErrorName") &
           val.checkEmty(newStudent.email, "tbErrorEmail") &
           val.checkEmty(newStudent.address, "tbErrorAddress") &
-          val.checkEmty(newStudent.math, "tbErrorMath") &
-          val.checkEmty(newStudent.physics, "tbErrorPhysic") &
-          val.checkEmty(newStudent.chemistry, "tbErrorChemistry");
+          val.checkEmty(newStudent.mathPoint, "tbErrorMath") &
+          val.checkEmty(newStudent.physicsPoint, "tbErrorPhysics") &
+          val.checkEmty(newStudent.chemistryPoint, "tbErrorChemistry");
         valid =
           valid &
           val.checkLetter(newStudent.name, "tbErrorLetterName") &
-          val.checkemail(newStudent.email, "tbErrorDefineEmail") &
-          val.checkNumber(newStudent.math, "tbErrorNumberMath", 0, 10) &
-          val.checkNumber(newStudent.physics, "tbErrorNumberPhysic", 0, 10) &
+          val.checkemail(newStudent.email, "tbErrorDefaultEmail") &
+          val.checkNumber(newStudent.mathPoint, "tbErrorNumberMath", 0, 10) &
           val.checkNumber(
-            newStudent.chemistry,
+            newStudent.physicsPoint,
+            "tbErrorNumberPhysics",
+            0,
+            10
+          ) &
+          val.checkNumber(
+            newStudent.chemistryPoint,
             "tbErrorNumberChemistry",
             0,
             10
@@ -234,7 +238,7 @@ document.querySelector("#btnCapNhat").onclick = () => {
           return;
         }
         list.updateUser(newStudent);
-        list.renderTableUser("#tableDanhSach");
+        list.renderTableUser("#tbodyPerson");
         list.saveListUser();
       }
       break;
@@ -251,8 +255,8 @@ document.querySelector("#btnCapNhat").onclick = () => {
           val.checkEmty(newEmployee.name, "tbErrorName") &
           val.checkEmty(newEmployee.email, "tbErrorEmail") &
           val.checkEmty(newEmployee.address, "tbErrorAddress") &
-          val.checkEmty(newEmployee.salaryPDay, "tbErrorSalaryPDay") &
-          val.checkEmty(newEmployee.workday, "tbErrorWorkday");
+          val.checkEmty(newEmployee.salaryDay, "tbErrorSalaryDay") &
+          val.checkEmty(newEmployee.workingDay, "tbErrorWorkingDay");
         valid =
           valid &
           val.checkLetter(newEmployee.name, "tbErrorLetterName") &
@@ -264,7 +268,7 @@ document.querySelector("#btnCapNhat").onclick = () => {
           return;
         }
         list.updateUser(newEmployee);
-        list.renderTableUser("#tableDanhSach");
+        list.renderTableUser("#tbodyPerson");
         list.saveListUser();
       }
       break;
@@ -296,17 +300,18 @@ document.querySelector("#btnCapNhat").onclick = () => {
           return;
         }
         list.updateUser(newCustomer);
-        list.renderTableUser("#tableDanhSach");
+        list.renderTableUser("#tbodyPerson");
         list.saveListUser();
       }
       break;
   }
-  document.querySelector("#mainForm").reset();
-  document.querySelectorAll(".thong_bao").reset();
+  document.querySelector("#personID").disabled = "false";
+  document.querySelector("#userType").disabled = "false";
+  document.querySelector("#personForm").reset();
 };
-// ------------ chi tiết người dùng-----------------
-window.detailUser = (code) => {
-  let editUser = list.editUser(code);
+
+window.detailUser = (personID) => {
+  let editUser = list.editUser(personID);
   switch (editUser.class) {
     case "student":
       renderModal(editUser.class);
@@ -335,16 +340,16 @@ window.detailUser = (code) => {
 };
 document.querySelector("#sortIncrease").addEventListener("click", () => {
   list.sortUserName(list.listUser, 1);
-  list.renderTableUser("#tableDanhSach");
+  list.renderTableUser("#tbodyPerson");
   list.saveListUser();
 });
 document.querySelector("#sortReduce").addEventListener("click", () => {
   list.sortUserName(list.listUser, -1);
-  list.renderTableUser("#tableDanhSach");
+  list.renderTableUser("#tbodyPerson");
   list.saveListUser();
 });
-document.querySelector("#findUser").addEventListener("change", (e) => {
+document.querySelector("#allPerson").addEventListener("change", (e) => {
   let user = e.target.value;
   let filterList = list.filterUser(user);
-  list.renderTableUserFilter("#tableDanhSach", filterList);
+  list.renderTableUserFilter("#tbodyPerson", filterList);
 });

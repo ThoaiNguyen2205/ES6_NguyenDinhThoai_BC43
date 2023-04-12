@@ -13,34 +13,33 @@ export class listPerson {
         case "student":
           var userAdd = new Student();
           Object.assign(userAdd, user),
-            (string = `Tổng Điểm : ${userAdd.average()}
+            (string = ` Điểm Trung Bình : ${userAdd.average()}
                 `);
           break;
         case "employee":
           var userAdd = new Employee();
           Object.assign(userAdd, user);
-          string = `Tổng lương : ${userAdd.salaryTotal()}`;
+          string = `Tổng lương : ${userAdd.salaryTotal()} VNĐ`;
           break;
         case "customer":
           var userAdd = new Customer();
           Object.assign(userAdd, user);
-          string = `${userAdd.company}`;
+          string = `Công ty : ${userAdd.company}`;
           break;
       }
 
       htmlContent += `
             <tr>
-                <td>${userAdd.code}</td>
+                <td>${userAdd.personID}</td>
                 <td>${userAdd.name}</td>
                 <td>${userAdd.address}</td>
                 <td>${userAdd.email}</td>
                 <td>${string}</td>
                 <td>
-                    <button class="btn btn-primary mx-2" data-toggle="modal"
-                    data-target="#myModal"onclick="detailUser('${userAdd.code}')"><i class="fa-solid fa-circle-info"></i></button>
-                    <button class ="btn btn-danger" onclick="deleteUser('${userAdd.code}')">X</button>
+                    
+                    <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá Mã</button>
                     <button class ="btn btn-primary mx-2" data-toggle="modal"
-                    data-target="#myModal"onclick="editUser('${userAdd.code}')"><i class="fa-regular fa-pen-to-square"></i></button>
+                    data-target="#exampleModal" onclick="editUser('${userAdd.personID}')">Chỉnh Sửa</button>
                 </td>
 
             </tr>
@@ -58,13 +57,13 @@ export class listPerson {
         case "student":
           var userAdd = new Student();
           Object.assign(userAdd, user),
-            (string = `Tổng Điểm : ${userAdd.calAverage()}
+            (string = `Điểm Trung Bình: ${userAdd.average()}
                   `);
           break;
         case "employee":
           var userAdd = new Employee();
           Object.assign(userAdd, user);
-          string = `Tổng lương : ${userAdd.calSalary()}`;
+          string = `Tổng lương : ${userAdd.salaryTotal()}`;
           break;
         case "customer":
           var userAdd = new Customer();
@@ -76,15 +75,14 @@ export class listPerson {
 
       htmlContent += `
               <tr>
-                  <td>${userAdd.code}</td>
+                  <td>${userAdd.personID}</td>
                   <td>${userAdd.name}</td>
                   <td>${userAdd.address}</td>
                   <td>${userAdd.email}</td>
                   <td>${string}</td>
                   <td>
-                  <button class="btn btn-primary mx-2" onclick="detailUser('${userAdd.code}')"><i class="fa-solid fa-circle-info"></i></button>
-                      <button class ="btn btn-danger" onclick="deleteUser('${userAdd.code}')">X</button>
-                      <button class ="btn btn-primary mx-2" onclick="editUser('${userAdd.code}')"><i class="fa-regular fa-pen-to-square"></i></button>
+                      <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá</button>
+                      <button class ="btn btn-primary mx-2" data-target="#exampleModal" onclick="editUser('${userAdd.personID}')">Chỉnh sửa</button>
                   </td>
 
               </tr>
@@ -105,19 +103,19 @@ export class listPerson {
   }
 
   deleteUser(code) {
-    let indexDel = this.listUser.findIndex((user) => user.code === code);
+    let indexDel = this.listUser.findIndex((user) => user.personID === code);
     if (indexDel !== -1) {
       this.listUser.splice(indexDel, 1);
     }
   }
   editUser(code) {
     let edit = this.listUser.find((user) => {
-      return user.code === code;
+      return user.personID === code;
     });
     return edit;
   }
   updateUser(newUser) {
-    let user = this.editUser(newUser.code);
+    let user = this.editUser(newUser.personID);
     Object.assign(user, newUser);
   }
   sortUserName(list, number) {

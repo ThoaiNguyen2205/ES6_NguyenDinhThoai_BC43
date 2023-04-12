@@ -5,96 +5,73 @@ export let RenderForm = (person = "student") => {
       stringHTML = `
       <div class="col-md-6 mb-3">
         <label for="mathPoint">Điểm Toán</label>
-        <input type="text" class="form-control" id="mathPoint" placeholder="Nhập điểm Toán" required>
-        <div class ="thong_bao text    text-danger"id="tbErrorMath"></div>
-        <div class ="thong_bao text    text-danger"id="tbErrorNumberMath"></div>	
+        <input type="number" class="form-control" id="mathPoint" placeholder="Nhập điểm Toán" required>
+        <div class ="thong_bao invalid-feedback" id="tbErrorMath"></div>
+        <div class ="thong_bao invalid-feedback"id="tbErrorNumberMath"></div>	
         <span class="sp-thongbao" id="tbMath"></span>
      </div>
      <div class="col-md-6 mb-3">
         <label for="physicsPoint">Điểm Lý</label>
-        <input type="text" class="form-control" id="physicsPoint" placeholder="Nhập điểm Lý" required>
-        <div class ="thong_bao text    text-danger"id="tbErrorPhysics"></div>
-        <div class ="thong_bao text    text-danger"id="tbErrorNumberPhysics"></div>	
+        <input type="number" class="form-control" id="physicsPoint" placeholder="Nhập điểm Lý" required>
+        <div class ="thong_bao invalid-feedback"id="tbErrorPhysics"></div>
+        <div class ="thong_bao invalid-feedback"id="tbErrorNumberPhysics"></div>	
         <span class="sp-thongbao" id="tbPhysics"></span>
      </div>
      <div class="col-md-6 mb-3">
         <label for="chemistryPoint">Điểm Hoá</label>
-        <input type="text" class="form-control" id="chemistryPoint" placeholder="Nhập điểm Hoá" required>
-        <div class ="thong_bao text    text-danger"id="tbErrorChemistry"></div>
-        <div class ="thong_bao text    text-danger"id="tbErrorNumberChemistry"></div>	
+        <input type="number" class="form-control" id="chemistryPoint" placeholder="Nhập điểm Hoá" required>
+        <div class ="thong_bao invalid-feedback"id="tbErrorChemistry"></div>
+        <div class ="thong_bao invalid-feedback"id="tbErrorNumberChemistry"></div>	
         <span class="sp-thongbao" id="tbChemistry"></span>
      </div>
             `;
       break;
     case "employee":
       stringHTML = `
-            <div class="form-group">
-                <div class="input-group">
-                <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-money" aria-hidden="true"></i></span>
-                    </div>
-                    <input type="number"  id="salaryPDay" class="form-control input-sm"
-                        placeholder="Lương theo ngày">
-                </div>
-                <div class ="thong_bao text    text-danger"id="tbErrorSalaryPDay"></div>	
-                <div class ="thong_bao text    text-danger"id="tbErrorNumBerSalaryPDay"></div>
-                <span class="sp-thongbao" id="salaryPDay"></span>
-            </div>
+      <div class="col-md-6 mb-3">
+        <label for="workingDay">Số ngày làm</label>
+        <input type="number" class="form-control" id="workingDay" placeholder="Nhập số ngày làm việc" required>
+        <div class ="thong_bao invalid-feedback"id="tbErrorWorkingDay"></div>
+        <div class ="thong_bao invalid-feedback"id="tbErrorNumberWorkingDay"></div>	
+        <span class="sp-thongbao" id="tbWork"></span>
+     </div>
+     <div class="col-md-6 mb-3">
+      <label for="salaryDay">Lương 1 ngày</label>
+      <input type="number" class="form-control" id="salaryDay" placeholder="Nhập lương 1 ngày" required>
+      <div class ="thong_bao invalid-feedback"id="tbErrorSalaryDay"></div>
+      <div class ="thong_bao invalid-feedback"id="tbErrorNumberSalaryDay"></div>	
+      <span class="sp-thongbao" id="tbSalaryDay"></span>
+   </div>
 
-            <div class="form-group">
-                <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-calendar"
-                        aria-hidden="true"></i></span>
-            </div>
-                    <input type="number"  id="workday" class="form-control input-sm"
-                        placeholder="Số ngày làm việc">
-                </div>
-                <div class ="thong_bao text    text-danger"id="tbErrorWorkday"></div>
-                <div class ="thong_bao text    text-danger"id="tbErrorNumberWorkday"></div>
-                <span class="sp-thongbao" id="tbworkday"></span>
-            </div>
             `;
       break;
     case "customer":
       stringHTML = `
-            <div class="form-group">
-                <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-building"></i></span>
-            </div>
-                    <input type="text"  id="company" class="form-control input-sm"
-                        placeholder="Tên Công ty">
-                </div>
-                <div class ="thong_bao text    text-danger"id="tbErrorCompany"></div>
-                <div class ="thong_bao text    text-danger"id="tbErrorLetterCompany"></div>
-                <span class="sp-thongbao" id="tbcompany"></span>
-            </div>
 
-            <div class="form-group">
-                <div class="input-group">
-                <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-money"></i></span>
-                    </div>
-                    <input type="number"  id="billValue" class="form-control input-sm"
-                        placeholder="Trị giá hóa đơn">
-                </div>
-                <div class ="thong_bao text    text-danger"id="tbErrorbillValue"></div>
-                <div class ="thong_bao text    text-danger"id="tbErrorNumberBillvalue"></div>
-                <span class="sp-thongbao" id="tbbillValue"></span>
-            </div>
+      <div class="col-md-6 mb-3">
+      <label for="company">Công ty</label>
+      <input type="text" class="form-control" id="company" placeholder="Nhập tên công ty" required>
+      <div class ="thong_bao invalid-feedback"id="tbErrorCompany"></div>
+      <div class ="thong_bao invalid-feedback"id="tbErrorLetterCompany"></div>	
+      <span class="sp-thongbao" id="tbCompany"></span>
+   </div>
+   <div class="col-md-6 mb-3">
+      <label for="billValue">Hoá đơn</label>
+      <input type="number" class="form-control" id="billValue" placeholder="Nhập mã hoá đơn" required>
+      <div class ="thong_bao invalid-feedback"id="tbErrorBillValue"></div>
+      <div class ="thong_bao invalid-feedback"id="tbErrorNumberBillValue"></div>	
+      <span class="sp-thongbao" id="tbBill"></span>
+   </div>
+   <div class="col-md-6 mb-3">
+      <label for="feedback">Đánh giá</label>
+      <input type="text" class="form-control" id="feedback" placeholder="Nhập nội dung" required>
+      <div class ="thong_bao invalid-feedback"id="tbErrorFeedback"></div>
+      <div class ="thong_bao invalid-feedback"id="tbErrorNumberFeedback"></div>	
+      <span class="sp-thongbao" id="tbFeedback"></span>
+   </div>
 
-            <div class="form-group">
-                <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-sticky-note"></i></span>
-            </div>
-                    <input type="text"  id="review" class="form-control input-sm"
-                        placeholder="Đánh giá">
-                </div>
-                <div class ="thong_bao text    text-danger"id="tbErrorReview"></div>
-                <span class="sp-thongbao" id="tbreview"></span>
-            </div>
+
+     
             `;
       break;
   }

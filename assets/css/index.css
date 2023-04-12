@@ -1,0 +1,14 @@
+html body {
+    font-size: 16px;
+    background-color: rgb(241, 236, 236);
+}
+
+
+
+.invalid-feedback {
+    display: block;
+}
+
+.modal .modal-content {
+    background-color: rgb(148, 202, 229);
+}
