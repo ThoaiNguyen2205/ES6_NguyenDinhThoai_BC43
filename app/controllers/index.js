@@ -15,6 +15,10 @@ document.querySelector("#btnAdd").onclick = () => {
   document.querySelector("#btnAddPerson").style.display = "inline";
   document.querySelector("#btnUpPerson").style.display = "none";
   RenderForm();
+  document.querySelector("#personForm").reset();
+
+  document.querySelector("#personID").disabled = "";
+  document.querySelector("#userType").disabled = "";
 };
 
 document.querySelector("#userType").onchange = () => {
@@ -152,7 +156,7 @@ document.querySelector("#btnAddPerson").onclick = () => {
       list.saveListUser();
     }
   }
-
+  document.querySelector("button[data-dismiss]").click();
   document.querySelector("#personForm").reset();
   document.querySelectorAll(".thong_bao").reset();
 };
@@ -313,8 +317,8 @@ document.querySelector("#btnUpPerson").onclick = () => {
 
   document.querySelector("#personID").disabled = "";
   document.querySelector("#userType").disabled = "";
-
   document.querySelector("#personForm").reset();
+  document.querySelector("button[data-dismiss]").click();
 };
 
 document.querySelector("#sortIncrease").addEventListener("click", () => {
@@ -332,3 +336,21 @@ document.querySelector("#allPerson").addEventListener("change", (e) => {
   let filterList = list.filterUser(user);
   list.renderTableUserFilter("#tbodyPerson", filterList);
 });
+document.querySelector("#btnClose").onclick = () => {
+  document.querySelectorAll(".invalid-feedback").reset();
+  document.querySelector("#personForm").reset();
+};
+// // Tìm kiếm
+// document.getElementById("searchName").oninput = () => {
+//   searchName(listUser);
+//   console.log(listUser);
+// };
+// function searchName() {
+//   let search = document.querySelector("#searchName").value;
+//   let newList = listUser.filter((per) => {
+//     let name = per.name.toLowerCase();
+//     search = search.toLowerCase();
+//     return name.indexOf(search) !== -1;
+//   });
+//   renderTableUser(newList);
+// }

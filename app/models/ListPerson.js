@@ -31,7 +31,9 @@ export class listPerson {
         case "customer":
           var userAdd = new Customer();
           Object.assign(userAdd, user);
-          string = `Khách hàng đánh giá : ${userAdd.feedback} !`;
+          string = `
+          <div>Công ty : ${userAdd.company}</div>
+          Khách hàng đánh giá : ${userAdd.feedback} !`;
           break;
       }
 
@@ -70,14 +72,21 @@ export class listPerson {
         case "employee":
           var userAdd = new Employee();
           Object.assign(userAdd, user);
-          string = `Tổng lương : ${userAdd.salaryTotal()}`;
+          string = `<div>Số ngày làm : ${userAdd.workingDay} ngày</div>
+          <div>
+          Lương 1 ngày : ${userAdd.salaryDay} VNĐ</div>
+          <div>
+          Tổng lương : ${userAdd.salaryTotal()} VNĐ
+          </div>`;
           break;
         case "customer":
           var userAdd = new Customer();
           Object.assign(userAdd, user);
-          string = `${userAdd.company}`;
-
+          string = `<div>Công ty : ${userAdd.company}</div>
+          Khách hàng đánh giá : ${userAdd.feedback} !`;
           break;
+        default:
+          return htmlContent;
       }
 
       htmlContent += `
@@ -88,8 +97,9 @@ export class listPerson {
                   <td>${userAdd.email}</td>
                   <td>${string}</td>
                   <td>
-                      <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá</button>
-                      <button class ="btn btn-primary mx-2" data-target="#exampleModal" onclick="editUser('${userAdd.personID}')">Chỉnh sửa</button>
+                  <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá Mã</button>
+                  <button class ="btn btn-primary mx-2" data-toggle="modal"
+                  data-target="#exampleModal" onclick="editUser('${userAdd.personID}')">Chỉnh Sửa</button>
                   </td>
 
               </tr>

@@ -45,7 +45,8 @@
       data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"
+      id="searchName">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
         <a class="nav-link" href="#">Sign out</a>
@@ -134,8 +135,8 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="personID">Mã Người dùng</label>
-                <input type="text" class="form-control" id="personID" placeholder="Nhập tên người dùng" required>
-                <div id="tbErrorPersonID" class="invalid-feedback thong_bao">
+                <input type="text" class="form-control" id="personID" placeholder="Nhập tên người dùng">
+                <div id="tbErrorPersonID" class="invalid-feedback">
                 </div>
                 <div id="tbErrorLengthID" class="invalid-feedback thong_bao">
                 </div>
@@ -169,7 +170,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
           <button type="button" class="btn btn-success" id="btnUpPerson">Cập Nhật</button>
           <button type="button" class="btn btn-warning" id="btnAddPerson">Thêm</button>
         </div>
