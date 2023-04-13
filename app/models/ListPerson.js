@@ -102,15 +102,17 @@ export class listPerson {
     }
   }
 
-  deleteUser(code) {
-    let indexDel = this.listUser.findIndex((user) => user.personID === code);
+  deleteUser(personID) {
+    let indexDel = this.listUser.findIndex(
+      (user) => user.personID === personID
+    );
     if (indexDel !== -1) {
       this.listUser.splice(indexDel, 1);
     }
   }
-  editUser(code) {
+  editUser(personID) {
     let edit = this.listUser.find((user) => {
-      return user.personID === code;
+      return user.personID === personID;
     });
     return edit;
   }

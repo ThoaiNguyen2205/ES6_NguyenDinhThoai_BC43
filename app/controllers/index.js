@@ -153,7 +153,7 @@ document.querySelector("#btnAddPerson").onclick = () => {
   }
 
   document.querySelector("#personForm").reset();
-  document.querySelector("thong_bao").reset();
+  // document.querySelectorAll(".thong_bao").reset();
 };
 // DeletePerson
 window.deleteUser = (personID) => {
@@ -188,8 +188,8 @@ window.editUser = (personID) => {
     .forEach((input) => {
       input.disabled = false;
     });
-  document.querySelector("#personID").disabled = "true";
-  document.querySelector("#userType").disabled = "true";
+  document.querySelector("#personID").disabled = "false";
+  document.querySelector("#userType").disabled = "false";
 
   document.querySelector("#btnAddPerson").style.display = "none";
   document.querySelector("#btnUpPerson").style.display = "inline";
@@ -208,7 +208,6 @@ document.querySelector("#btnUpPerson").onclick = () => {
           newStudent[id] = value;
         }
         let valid = true;
-
         valid =
           val.checkEmty(newStudent.name, "tbErrorName") &
           val.checkEmty(newStudent.email, "tbErrorEmail") &
@@ -260,9 +259,9 @@ document.querySelector("#btnUpPerson").onclick = () => {
         valid =
           valid &
           val.checkLetter(newEmployee.name, "tbErrorLetterName") &
-          val.checkemail(newEmployee.email, "tbErrorDefineEmail") &
-          val.checkNumberE(newEmployee.salaryPDay, "tbErrorNumBerSalaryPDay") &
-          val.checkNumberE(newEmployee.workday, "tbErrorNumberWorkday");
+          val.checkemail(newEmployee.email, "tbErrorDefaultEmail") &
+          val.checkNumberE(newEmployee.salaryDay, "tbErrorNumBerSalaryDay") &
+          val.checkNumberE(newEmployee.workingDay, "tbErrorNumberWorkingDay");
 
         if (!valid) {
           return;
@@ -288,13 +287,13 @@ document.querySelector("#btnUpPerson").onclick = () => {
           val.checkEmty(newCustomer.address, "tbErrorAddress") &
           val.checkEmty(newCustomer.company, "tbErrorCompany") &
           val.checkEmty(newCustomer.billValue, "tbErrorBillValue") &
-          val.checkEmty(newCustomer.review, "tbErrorReview");
+          val.checkEmty(newCustomer.feedback, "tbErrorFeedback");
         valid =
           valid &
           val.checkLetter(newCustomer.name, "tbErrorLetterName") &
-          val.checkemail(newCustomer.email, "tbErrorDefineEmail") &
+          val.checkemail(newCustomer.email, "tbErrorDefaultEmail") &
           val.checkLetter(newCustomer.company, "tbErrorLetterCompany") &
-          val.checkNumberE(newCustomer.billValue, "tbErrorNumberBillvalue");
+          val.checkNumberE(newCustomer.billValue, "tbErrorNumberBillValue");
 
         if (!valid) {
           return;
@@ -305,8 +304,14 @@ document.querySelector("#btnUpPerson").onclick = () => {
       }
       break;
   }
+  document
+    .querySelectorAll("#mainForm input,#mainForm select")
+    .forEach((input) => {
+      input.disabled = true;
+    });
   document.querySelector("#personID").disabled = "false";
   document.querySelector("#userType").disabled = "false";
+
   document.querySelector("#personForm").reset();
 };
 

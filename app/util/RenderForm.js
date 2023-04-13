@@ -4,22 +4,23 @@ export let RenderForm = (person = "student") => {
     case "student":
       stringHTML = `
       <div class="col-md-6 mb-3">
-        <label for="mathPoint">Điểm Toán</label>
-        <input type="number" class="form-control" id="mathPoint" placeholder="Nhập điểm Toán" required>
-        <div class ="thong_bao invalid-feedback" id="tbErrorMath"></div>
-        <div class ="thong_bao invalid-feedback"id="tbErrorNumberMath"></div>	
-        <span class="sp-thongbao" id="tbMath"></span>
-     </div>
-     <div class="col-md-6 mb-3">
+            <label for="mathPoint">Điểm Toán</label>
+            <input type="number" class="form-control" id="mathPoint" placeholder="Nhập điểm toán" required>
+            <div id="tbErrorMath" class="invalid-feedback">
+            </div>
+            <div id="tbErrorNumberMath" class="invalid-feedback thong_bao">
+             </div>
+            </div>
+        <div class="col-md-6 mb-3">
         <label for="physicsPoint">Điểm Lý</label>
-        <input type="number" class="form-control" id="physicsPoint" placeholder="Nhập điểm Lý" required>
+        <input type="number" class="form-control" id="physicsPoint" placeholder="Nhập điểm Lý" >
         <div class ="thong_bao invalid-feedback"id="tbErrorPhysics"></div>
         <div class ="thong_bao invalid-feedback"id="tbErrorNumberPhysics"></div>	
         <span class="sp-thongbao" id="tbPhysics"></span>
      </div>
      <div class="col-md-6 mb-3">
         <label for="chemistryPoint">Điểm Hoá</label>
-        <input type="number" class="form-control" id="chemistryPoint" placeholder="Nhập điểm Hoá" required>
+        <input type="number" class="form-control" id="chemistryPoint" placeholder="Nhập điểm Hoá" >
         <div class ="thong_bao invalid-feedback"id="tbErrorChemistry"></div>
         <div class ="thong_bao invalid-feedback"id="tbErrorNumberChemistry"></div>	
         <span class="sp-thongbao" id="tbChemistry"></span>
