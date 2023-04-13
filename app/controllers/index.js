@@ -20,6 +20,7 @@ document.querySelector("#btnAdd").onclick = () => {
 document.querySelector("#userType").onchange = () => {
   let change = document.querySelector("#userType").value;
   switch (change) {
+    case "all":
     case "student":
       RenderForm(change);
       break;
@@ -193,7 +194,7 @@ window.editUser = (personID) => {
     .forEach((input) => {
       input.disabled = false;
     });
-  document.querySelector("#personID").disabled = "false";
+  document.querySelector("#personID").disabled = "flase";
   document.querySelector("#userType").disabled = "false";
 
   document.querySelector("#btnAddPerson").style.display = "none";
@@ -310,45 +311,12 @@ document.querySelector("#btnUpPerson").onclick = () => {
       break;
   }
 
-  document
-    .querySelectorAll("#mainForm input,#mainForm select")
-    .forEach((input) => {
-      input.disabled = false;
-    });
-  document.querySelector("#personID").disabled = "false";
-  document.querySelector("#userType").disabled = "false";
+  document.querySelector("#personID").disabled = "";
+  document.querySelector("#userType").disabled = "";
 
   document.querySelector("#personForm").reset();
 };
 
-window.detailUser = (personID) => {
-  let editUser = list.editUser(personID);
-  switch (editUser.class) {
-    case "student":
-      renderModal(editUser.class);
-      break;
-    case "employee":
-      renderModal(editUser.class);
-      break;
-    default:
-      renderModal(editUser.class);
-  }
-  if (editUser) {
-    let arrinput = document.querySelectorAll(".modal-body input");
-    for (let input of arrinput) {
-      let { id } = input;
-      input.value = editUser[id];
-    }
-  }
-  document.querySelector("#header-title").innerHTML = "Chi Tiết Người Dùng";
-  document
-    .querySelectorAll("#mainForm input,#mainForm select")
-    .forEach((input) => {
-      input.disabled = "true";
-    });
-  document.querySelector("#btnThemNV").style.display = "none";
-  document.querySelector("#btnCapNhat").style.display = "none";
-};
 document.querySelector("#sortIncrease").addEventListener("click", () => {
   list.sortUserName(list.listUser, 1);
   list.renderTableUser("#tbodyPerson");

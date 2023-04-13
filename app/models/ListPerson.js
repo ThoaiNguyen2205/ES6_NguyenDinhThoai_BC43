@@ -19,12 +19,19 @@ export class listPerson {
         case "employee":
           var userAdd = new Employee();
           Object.assign(userAdd, user);
-          string = `Tổng lương : ${userAdd.salaryTotal()} VNĐ`;
+          string = `
+          <div>Số ngày làm : ${userAdd.workingDay} ngày</div>
+          <div>
+          Lương 1 ngày : ${userAdd.salaryDay} VNĐ</div>
+          <div>
+          Tổng lương : ${userAdd.salaryTotal()} VNĐ
+          </div>
+          `;
           break;
         case "customer":
           var userAdd = new Customer();
           Object.assign(userAdd, user);
-          string = `Công ty : ${userAdd.company}`;
+          string = `Khách hàng đánh giá : ${userAdd.feedback} !`;
           break;
       }
 
