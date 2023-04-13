@@ -25,7 +25,10 @@ export class Student extends Person {
   }
   average() {
     let average =
-      (+this.mathPoint + +this.physicsPoint + +this.chemistryPoint) / 3;
+      (Number(this.mathPoint) +
+        Number(this.physicsPoint) +
+        Number(this.chemistryPoint)) /
+      3;
     return average.toFixed(1);
   }
 }

@@ -110,9 +110,9 @@ export class listPerson {
       this.listUser.splice(indexDel, 1);
     }
   }
-  editUser(personID) {
+  editUser(person) {
     let edit = this.listUser.find((user) => {
-      return user.personID === personID;
+      return user.personID === person;
     });
     return edit;
   }

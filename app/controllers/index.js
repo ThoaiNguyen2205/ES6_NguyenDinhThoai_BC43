@@ -153,7 +153,7 @@ document.querySelector("#btnAddPerson").onclick = () => {
   }
 
   document.querySelector("#personForm").reset();
-  // document.querySelectorAll(".thong_bao").reset();
+  document.querySelectorAll(".thong_bao").reset();
 };
 // DeletePerson
 window.deleteUser = (personID) => {
@@ -163,13 +163,18 @@ window.deleteUser = (personID) => {
 };
 // FixPerson
 window.editUser = (personID) => {
+  let change = document.querySelector("#userType");
   let editUser = list.editUser(personID);
+  change.value = editUser.class;
+  change.dispatchEvent(new Event("change"));
+
   switch (editUser.class) {
     case "student":
       RenderForm(editUser.class);
       break;
     case "employee":
       RenderForm(editUser.class);
+      console.log(RenderForm);
       break;
     default:
       RenderForm(editUser.class);
@@ -260,7 +265,7 @@ document.querySelector("#btnUpPerson").onclick = () => {
           valid &
           val.checkLetter(newEmployee.name, "tbErrorLetterName") &
           val.checkemail(newEmployee.email, "tbErrorDefaultEmail") &
-          val.checkNumberE(newEmployee.salaryDay, "tbErrorNumBerSalaryDay") &
+          val.checkNumberE(newEmployee.salaryDay, "tbErrorNumberSalaryDay") &
           val.checkNumberE(newEmployee.workingDay, "tbErrorNumberWorkingDay");
 
         if (!valid) {
@@ -304,10 +309,11 @@ document.querySelector("#btnUpPerson").onclick = () => {
       }
       break;
   }
+
   document
     .querySelectorAll("#mainForm input,#mainForm select")
     .forEach((input) => {
-      input.disabled = true;
+      input.disabled = false;
     });
   document.querySelector("#personID").disabled = "false";
   document.querySelector("#userType").disabled = "false";
