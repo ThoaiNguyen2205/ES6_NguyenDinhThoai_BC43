@@ -5,6 +5,7 @@ import { Valadition } from "../models/Validation.js";
 
 let list = new listPerson();
 let val = new Valadition();
+console.log(list);
 document.querySelector("#btnAdd").onclick = () => {
   document.querySelector("#exampleModalLabel").innerHTML = "Thêm  Người Dùng";
   document
@@ -24,7 +25,6 @@ document.querySelector("#btnAdd").onclick = () => {
 document.querySelector("#userType").onchange = () => {
   let change = document.querySelector("#userType").value;
   switch (change) {
-    case "all":
     case "student":
       RenderForm(change);
       break;
@@ -158,7 +158,6 @@ document.querySelector("#btnAddPerson").onclick = () => {
   }
   document.querySelector("button[data-dismiss]").click();
   document.querySelector("#personForm").reset();
-  document.querySelectorAll(".thong_bao").reset();
 };
 // DeletePerson
 window.deleteUser = (personID) => {
@@ -337,20 +336,5 @@ document.querySelector("#allPerson").addEventListener("change", (e) => {
   list.renderTableUserFilter("#tbodyPerson", filterList);
 });
 document.querySelector("#btnClose").onclick = () => {
-  document.querySelectorAll(".invalid-feedback").reset();
   document.querySelector("#personForm").reset();
 };
-// // Tìm kiếm
-// document.getElementById("searchName").oninput = () => {
-//   searchName(listUser);
-//   console.log(listUser);
-// };
-// function searchName() {
-//   let search = document.querySelector("#searchName").value;
-//   let newList = listUser.filter((per) => {
-//     let name = per.name.toLowerCase();
-//     search = search.toLowerCase();
-//     return name.indexOf(search) !== -1;
-//   });
-//   renderTableUser(newList);
-// }

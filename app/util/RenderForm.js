@@ -10,7 +10,7 @@ export let RenderForm = (person = "student") => {
             </div>
             <div id="tbErrorNumberMath" class="invalid-feedback thong_bao">
              </div>
-            </div>
+        </div>
         <div class="col-md-6 mb-3">
         <label for="physicsPoint">Điểm Lý</label>
         <input type="number" class="form-control" id="physicsPoint" placeholder="Nhập điểm Lý" >

@@ -7,18 +7,21 @@ export class listPerson {
   renderTableUser(seclectorTable) {
     let htmlContent = "";
     let string = "";
-
+    let stringClass = "";
     for (let user of this.listUser) {
       switch (user.class) {
         case "student":
+          stringClass = `Sinh viên`;
           var userAdd = new Student();
           Object.assign(userAdd, user),
             (string = ` Điểm Trung Bình : ${userAdd.average()}
                 `);
           break;
         case "employee":
+          stringClass = `Giảng viên`;
           var userAdd = new Employee();
           Object.assign(userAdd, user);
+
           string = `
           <div>Số ngày làm : ${userAdd.workingDay} ngày</div>
           <div>
@@ -29,6 +32,7 @@ export class listPerson {
           `;
           break;
         case "customer":
+          stringClass = `Khách hàng`;
           var userAdd = new Customer();
           Object.assign(userAdd, user);
           string = `
@@ -41,12 +45,13 @@ export class listPerson {
             <tr>
                 <td>${userAdd.personID}</td>
                 <td>${userAdd.name}</td>
+                <td>${stringClass}</td>
                 <td>${userAdd.address}</td>
                 <td>${userAdd.email}</td>
                 <td>${string}</td>
                 <td>
                     
-                    <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá Mã</button>
+                    <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá</button>
                     <button class ="btn btn-primary mx-2" data-toggle="modal"
                     data-target="#exampleModal" onclick="editUser('${userAdd.personID}')">Chỉnh Sửa</button>
                 </td>
@@ -61,15 +66,18 @@ export class listPerson {
   renderTableUserFilter(seclectorTable, arrUser) {
     let htmlContent = "";
     let string = "";
+    let stringClass = "";
     for (let user of arrUser) {
       switch (user.class) {
         case "student":
+          stringClass = `Sinh viên`;
           var userAdd = new Student();
           Object.assign(userAdd, user),
             (string = `Điểm Trung Bình: ${userAdd.average()}
                   `);
           break;
         case "employee":
+          stringClass = "Giảng viên";
           var userAdd = new Employee();
           Object.assign(userAdd, user);
           string = `<div>Số ngày làm : ${userAdd.workingDay} ngày</div>
@@ -80,6 +88,7 @@ export class listPerson {
           </div>`;
           break;
         case "customer":
+          stringClass = "Khách hàng";
           var userAdd = new Customer();
           Object.assign(userAdd, user);
           string = `<div>Công ty : ${userAdd.company}</div>
@@ -93,11 +102,12 @@ export class listPerson {
               <tr>
                   <td>${userAdd.personID}</td>
                   <td>${userAdd.name}</td>
+                  <td>${stringClass}</td>
                   <td>${userAdd.address}</td>
                   <td>${userAdd.email}</td>
                   <td>${string}</td>
                   <td>
-                  <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá Mã</button>
+                  <button class ="btn btn-danger" onclick="deleteUser('${userAdd.personID}')">Xoá</button>
                   <button class ="btn btn-primary mx-2" data-toggle="modal"
                   data-target="#exampleModal" onclick="editUser('${userAdd.personID}')">Chỉnh Sửa</button>
                   </td>
@@ -166,10 +176,10 @@ export class listPerson {
     return list;
   }
 
-  filterUser(type) {
-    if (type) {
+  filterUser(value) {
+    if (value) {
       let filterList = this.listUser.filter((user) => {
-        return user.class === type;
+        return user.class === value;
       });
       return filterList;
     } else {

@@ -46,7 +46,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"
-      id="searchName">
+      id="searchName" oninput="searchPerson()">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
         <a class="nav-link" href="#">Sign out</a>
@@ -54,7 +54,7 @@
     </ul>
   </nav>
 
-  <div class="container">
+  <div class="container-fluid">
 
 
 
@@ -74,7 +74,7 @@
             <div class="col-sm-10">
               <select class="custom-select" id="allPerson">
                 <option selected>Chọn loại</option>
-                <option value="all">Tất cả</option>
+                <option value="">Tất cả</option>
                 <option value="student">Sinh viên</option>
                 <option value="employee">Giảng viên</option>
                 <option value="customer">Khách hàng</option>
@@ -97,6 +97,7 @@
                 <i class="fa fa-arrow-up" id="sortIncrease" style="cursor: pointer;"></i>
                 <i class="fa fa-arrow-down" id="sortReduce" style="cursor: pointer;"></i>
               </th>
+              <th>Đối tượng</th>
               <th>Địa chỉ</th>
               <th>Email</th>
               <th>Khác</th>

@@ -15,3 +15,12 @@ body .table td,
 body .table th {
     vertical-align: middle;
 }
+
+.container-fluid {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.container-fluid td button {
+    font-size: 13px;
+}

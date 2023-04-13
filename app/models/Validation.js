@@ -18,7 +18,8 @@ export class Valadition {
     return true;
   };
   checkLetter = (value, idError, name) => {
-    var regexLetter = /^[A-Z a-z]+$/;
+    var regexLetter =
+      /^[a-v A-Z  xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ ]+$/;
     if (regexLetter.test(value)) {
       document.getElementById(idError).innerHTML = "";
       return true;
